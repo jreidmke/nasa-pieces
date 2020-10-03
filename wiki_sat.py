@@ -9,7 +9,7 @@ FORMAT_PARAMETERS_HTML = "&format=json&prop=text&formatversion=2"
 FORMAT_PARAMETERS_WIKITEXT = "&format=json&prop=wikitext&formatversion=2"
 
 def call_wikitext(search_term):
-    """Returns response in WikiText format"""
+    """Returns response in WikiText format. If response is error, returns list of USA Satellites"""
 
     resp = requests.get(f"{BASE_URL}{search_term}{FORMAT_PARAMETERS_WIKITEXT}").json()
     if "error" in resp:
@@ -25,7 +25,7 @@ def parse_for_sat(response, search_term):
     else:
         return call_html(f"{search_term}_(satellite)")
 
-#In case we wanna use the html response. Both look a lil hairy. 
+#In case we wanna use the html response. Both look a lil hairy.
 
 def call_html(search_term):
     """Returns response in HTML format"""
